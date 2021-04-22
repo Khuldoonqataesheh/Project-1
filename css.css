@@ -1,0 +1,31 @@
+h1{
+    text-align: center;
+
+}
+.play{
+    float: left;
+
+}
+.playagain{
+    float: right;
+
+}
+.grid-container {
+    width: 1000px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px 100px ;
+    background-color: #ffffff;
+    padding-left: 175px ;
+  }
+  .grid-item {
+    border-top-left-radius: 300px;
+    border-top-right-radius: 300px;
+    border-bottom-right-radius: 300px;
+    border-bottom-left-radius: 300px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
