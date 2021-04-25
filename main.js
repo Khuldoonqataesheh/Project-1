@@ -2,24 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cells = document.querySelectorAll(".grid-container div");
   const result = document.querySelector("#result");
   const displayNumberOfPlayer = document.querySelector("#numberofplayer");
+  const winner = document.querySelector("#win") 
   let numberOfPlayer = 1;
-  const rows = [
-    [0, 1, 2, 3, 4, 5, 6],
-    [7, 8, 9, 10, 11, 12, 13],
-    [14, 15, 16, 17, 18, 19, 20],
-    [21, 22, 23, 24, 25, 26, 27],
-    [28, 29, 30, 31, 32, 33, 34],
-    [35, 36, 37, 38, 39, 40, 41],
-  ];
-  const columns = [
-    [0, 7, 14, 21, 28, 35],
-    [1, 8, 15, 22, 29, 36],
-    [2, 9, 16, 23, 30, 37],
-    [3, 10, 17, 24, 31, 38],
-    [4, 11, 18, 25, 32, 39],
-    [5, 12, 19, 26, 33, 40],
-    [6, 13, 20, 27, 34, 41],
-  ];
 
   for (let i = 0; i < cells.length; i++) {
     cells[i].onclick = () => {
@@ -27,23 +11,33 @@ document.addEventListener("DOMContentLoaded", () => {
         if (numberOfPlayer === 1) {
           cells[i].classList.add("filled");
           cells[i].classList.add("player_1");
-          displayNumberOfPlayer.innerHTML = numberOfPlayer;
-          console.log(diagonalCheck_2());
-          console.log(verticalCheck());
-          console.log(diagonalCheck());
-          console.log(horizontalCheck());
-          // console.log(cells[i].classList[0])
           numberOfPlayer = 2;
+          displayNumberOfPlayer.innerHTML = numberOfPlayer;
+          
+          if (
+            horizontalCheck() ||
+            verticalCheck() ||
+            horizontalCheck() ||
+            diagonalCheck_2()
+          ) {
+            winner.innerHTML = "player_1 Is Winner "
+            alert("player_1 Is Winner");
+          }
         } else if (numberOfPlayer === 2) {
           cells[i].classList.add("filled");
           cells[i].classList.add("player_2");
-          console.log(diagonalCheck_2());
-          console.log(verticalCheck());
-          console.log(diagonalCheck());
-          console.log(horizontalCheck());
-          //  console.log(cells[i].classList[1])
           numberOfPlayer = 1;
           displayNumberOfPlayer.innerHTML = numberOfPlayer;
+          
+          if (
+            horizontalCheck() ||
+            verticalCheck() ||
+            horizontalCheck() ||
+            diagonalCheck_2()
+          ) {
+            winner.innerHTML = "player_2 Is Winner "
+            alert("player_2 Is Winner");
+          }
         }
       } else {
         alert("Unavailable");
