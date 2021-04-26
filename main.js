@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cells = document.querySelectorAll(".grid-container div");
-  const result = document.querySelector("#result");
+  const reset = document.querySelector("#reset");
   const displayNumberOfPlayer = document.querySelector("#numberofplayer");
-  const winner = document.querySelector("#win") 
+  
   let numberOfPlayer = 1;
 
   for (let i = 0; i < cells.length; i++) {
@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
           cells[i].classList.add("filled");
           cells[i].classList.add("player_1");
           numberOfPlayer = 2;
-          displayNumberOfPlayer.innerHTML = numberOfPlayer;
+          displayNumberOfPlayer.innerHTML = "Player 2 turn ";
+         
           
           if (
             horizontalCheck() ||
@@ -20,14 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
             horizontalCheck() ||
             diagonalCheck_2()
           ) {
-            winner.innerHTML = "player_1 Is Winner "
-            alert("player_1 Is Winner");
+            displayNumberOfPlayer.innerHTML = "Player_1 Is Winner "
+            const button = document.createElement("button")
+            reset.append(button);
+            button.innerText ='Reset Game'
+            button.onclick = ()=>{
+                for(let i = 0 ; i<42 ; i++){
+                    cells[i].classList.remove("filled","player_1","player_2");
+                }
+                button.remove()
+                numberOfPlayer = 2;
+                displayNumberOfPlayer.innerHTML = "Player 2 turn ";
+            }
+            
           }
         } else if (numberOfPlayer === 2) {
           cells[i].classList.add("filled");
           cells[i].classList.add("player_2");
           numberOfPlayer = 1;
-          displayNumberOfPlayer.innerHTML = numberOfPlayer;
+          displayNumberOfPlayer.innerHTML = "Player 1 turn ";
           
           if (
             horizontalCheck() ||
@@ -35,12 +47,23 @@ document.addEventListener("DOMContentLoaded", () => {
             horizontalCheck() ||
             diagonalCheck_2()
           ) {
-            winner.innerHTML = "player_2 Is Winner "
-            alert("player_2 Is Winner");
+            displayNumberOfPlayer.innerHTML = "Player_2 Is Winner "
+            const button = document.createElement("button")
+            reset.append(button);
+            button.innerText ='Reset Game'
+            button.onclick = ()=>{
+                for(let i = 0 ; i<42 ; i++){
+                    cells[i].classList.remove("filled","player_1","player_2");
+                }
+                button.remove()
+                numberOfPlayer = 1;
+                displayNumberOfPlayer.innerHTML = "Player 1 turn ";
+            }
+           
           }
         }
       } else {
-        alert("Unavailable");
+        alert("Can't Press Here");
       }
     };
   }
